@@ -7,7 +7,7 @@
 
 		$action=(isset($_POST["action"]))?$_POST["action"]:$_GET["action"];
 		switch ($action) {
-				case 'session':
+				case 'sesion':
 				$user=$_POST["user"];
 				$password=$_POST["password"];
 
@@ -15,9 +15,8 @@
 				{
 					?>
 						<script type="text/javascript">
-							Materialize.toast("Bienvenido",1500,'',function(){
-								window.location="";
-							});
+							toastr["success"]("Bienvenido", "¡Ok!");
+							window.location.assign("../../")
 						</script>
 					<?php
 				} 
@@ -25,7 +24,7 @@
 				{
 					?>
 						<script type="text/javascript">
-							Materialize.toast("Datos ingresados no encontrados",1500);
+							toastr["error"]("Datos no encontrados", "¡Error!");
 						</script>
 					<?php
 				}

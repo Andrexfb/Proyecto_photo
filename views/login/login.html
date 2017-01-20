@@ -6,12 +6,27 @@
     <title>Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../../resources/css/toastr.min.css" />
     <link rel="stylesheet" href="style.css" />
     <script src="../../assets/jquery.js"></script>
     <script src="particles.js"></script>
     <script type="text/javascript" src="../../assets/bootstrap/js/bootstrap.js" ></script>
+    <script src="../../resources/js/toastr.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#aceptar").click(function(event){
+              var user=$("#form #user").val();
+              var password=$("#form #password").val();
+
+              $.post('../../app/controllers/usuarios_controller.php',{user:user,password:password,action:"sesion"},function(request){
+                $("#cont_request").html(request); 
+              });
+          });
+        });
+    </script>    
 </head>
 <body>
+<div style="display:none" id="cont_request"></div> 
 <div class="container">    
         
     <div id="loginbox" class="mainbox col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3"> 
@@ -29,7 +44,7 @@
 
             <div class="panel-body" >
 
-                <form name="form" id="form" class="form-horizontal" enctype="multipart/form-data" method="POST">
+                <form name="form" id="form" class="form-horizontal" enctype="multipart/form-data">
                    
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
@@ -44,7 +59,7 @@
                     <div class="form-group">
                         <!-- Button -->
                         <div class="col-sm-12 controls">
-                            <button type="submit" href="#" class="btn btn-primary pull-right"><i class="glyphicon glyphicon-log-in"></i>Iniciar</button>                          
+                            <a href="#" class="btn btn-primary pull-right" id="aceptar"><i class="glyphicon glyphicon-log-in"></i>Iniciar</a>                          
                         </div>
                     </div>
 
