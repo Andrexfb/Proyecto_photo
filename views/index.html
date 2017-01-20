@@ -4,9 +4,10 @@
 	<meta charset="UTF-8">
 	<title>Admon</title>
 	<link type="text/css" rel="stylesheet" href="../assets/css/buttons.dataTables.min.css">
-      <link type="text/css" rel="stylesheet" href="../assets/css/jquery.dataTables.min.css"/>
-      <link type="text/css" rel="stylesheet" href="../assets/css/dataTables.material.min.css"/>
-      <link type="text/css" rel="stylesheet" href="../assets/css/responsive.dataTables.min.css"/>
+    <link type="text/css" rel="stylesheet" href="../assets/css/jquery.dataTables.min.css"/>
+    <link type="text/css" rel="stylesheet" href="../assets/css/dataTables.material.min.css"/>
+    <link type="text/css" rel="stylesheet" href="../assets/css/responsive.dataTables.min.css"/>
+    <link rel="stylesheet" href="../resources/css/toastr.min.css" />
 	<link href='http://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
 	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css" />
@@ -24,6 +25,7 @@
     <script type="text/javascript" src="../assets/js/dataTables.buttons.min.js"></script>
     <script type="text/javascript" src="../assets/js/dataTables.responsive.min.js"></script>
     <script type="text/javascript" src="../assets/js/buttons.html5.min.js"></script>
+	<script src="../resources/js/toastr.min.js"></script>
 	
 </head>
 <body>
@@ -64,14 +66,14 @@
       </div>
     </div>
     <br>
-    <br>
+    
    
 	<div class="conteiner col-xs-12 col-md-4">
 		<form action="../app/controllers/photo_controller.php" method="POST" enctype="multipart/form-data">
-				<h4><b><i>Agregar Fotografias</i></b></h4>
+				<h3><b><i>Agregar Fotografias</i></b></h3>
 				<div class="form-group">	 
 				    <label for="nombre">Nombre Album</label>
-				    <input type="text" class="form-control validate" name="nombre"  placeholder="Nombre Album">
+				    <input type="text" class="form-control validate" name="nombre"  placeholder="Nombre Album" required>
 				  </div>
 			 	 <label for="categoria">Categoria</label>
 				  	<div class="row">
@@ -79,27 +81,28 @@
 							    
 					  </div>
 					  <div class="form-group col-xs-5 col-md-5 ">
-					  	<button type="button" class="btnn btn-primary" data-toggle="modal" data-target="#modalnueva">Nueva</button>
+					  	<button type="button" class="btnn btn-warning" data-toggle="modal" data-target="#modalnueva">Nueva</button>
 					  </div>
 					</div>
 				  <div class="form-group">
 				    <label >Archivo</label>
-				    <input type="file" name="foto">
+				    <input type="file" name="foto" required>
 				    
 				  </div>
 				  <div class="form-group">
-				    <input type="submit" class="btnn btn-primary" name="enviar" value="Agregar">
+				    <input type="submit" class="btnn btn-warning" name="enviar" value="Agregar">
 				  </div>
 		</form>
 	</div>
 	<br>
-	<br>
+	
 	<div class="conteiner col-xs-12 col-md-8">
 		<table class="table table-hover responsive" id="tab" cellspacing="0" width="100%">
 			<thead>
 	            <tr class="center">
 	                <th data-field="nombre">No.</th>
 	                <th data-field="nombre">Nombre Album</th>
+	                <th data-field="price">Foto</th>
 	                <th data-field="price">Eliminar</th>
 	                <th data-field="price">Modificar</th> 
 	            </tr>
@@ -113,17 +116,28 @@
 	  <div class="modal-dialog" role="document">
 	    <div class="modal-content">
 	      <div class="modal-header">
-	        <h5 class="modal-title">Modal title</h5>
+	        <h4 class="modal-title"><b><i>Agregar Categoria</i></b></h4>
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	          <span aria-hidden="true">&times;</span>
 	        </button>
 	      </div>
 	      <div class="modal-body">
-	        <p>Modal body text goes here.</p>
+	        	<div class="form-group">	 
+				    <label for="mcategoria">Nombre Categoria</label>
+				    <input type="text" class="form-control validate" name="mcategoria"  placeholder="Nombre Categoria" required>
+				  </div>
 	      </div>
 	      <div class="modal-footer">
-	        <button type="button" class="btn btn-primary">Save changes</button>
-	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		      <div class="row col-md-offset-2">
+		      <center>			
+			     <div class="col-xs-12  col-md-5">
+			        <button type="button" class="btnn btn-warning" id="aceptar">Aceptar</button>
+			      </div>
+		        <div class="col-xs-12 col-md-2">
+		        	<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+		        </div>
+		        </center>
+	       	 </div>
 	      </div>
 	    </div>
 	  </div>
@@ -140,7 +154,7 @@
 	     	$.post("../app/controllers/combo_controller.php",{action:"combo1"},function(res)
             {
               datos = JSON.parse(res);
-              var html="<select class='form-control' name='categoria'>";
+              var html="<select class='form-control' name='categoria' required>";
                 html+="<option value='' disabled selected>Elige Categoria</option>";
               for(var i=0;i<datos.length;i++)
               {
@@ -159,13 +173,13 @@
               $.each(res, function(i, item)
               {
                 
-                var btn_eliminar='<button class="btn_eliminar  btnn" data-position="left" data-delay="50" data-tooltip="Eliminar" data-id="'+item.codigo+'">Eliminar</button>';
+                var btn_eliminar='<button class="btn_eliminar  btn btn-danger" data-position="left" data-delay="50" data-tooltip="Eliminar" data-id="'+item.codigo+'">Eliminar</button>';
 
-                  var btn_modificar='<button class="btn_modificar btnn" data-position="left" data-delay="50" data-tooltip="Modificar" data-id="'+item.codigo+'">Modificar</button>';
+                  var btn_modificar='<button class="btn_modificar btn btn-success" data-position="left" data-delay="50" data-tooltip="Modificar" data-id="'+item.codigo+'">Modificar</button>';
 
 
 
-               html+="<tr><td>"+(i+1)+"</td><td>"+item.nombre+"</td><td>"+btn_eliminar+"</td><td>"+btn_modificar+"</td></tr>";
+               html+="<tr><td>"+(i+1)+"</td><td>"+item.nombre+"</td><td><img src='../"+item.foto+"' width='100' heigth='100'></td><td>"+btn_eliminar+"</td><td>"+btn_modificar+"</td></tr>";
                 //o puede ser numeros al azar y no el id (i+1) <td>"+item.descripcion"</td>
               });
               var f=new Date();
