@@ -12,16 +12,40 @@
     <script src="particles.js"></script>
     <script type="text/javascript" src="../../assets/bootstrap/js/bootstrap.js" ></script>
     <script src="../../resources/js/toastr.min.js"></script>
+    <script src="../../resources/js/jquery.validate.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
             $("#aceptar").click(function(event){
-              var user=$("#form #user").val();
-              var password=$("#form #password").val();
+                $("#form").submit();
+            });
+            $("#form").validate({
+                ignore:[],
+                rules:{
+                  user:"required",
+                  password: "required"
+                },
+                messages:{
+                  user:"Ingresa Usuario",
+                  password:"Ingresa Contraseña"
+                },
+                errorElement:"div",
+                errorPlacement:function(error,element){
+                  var placement=$(element).data("error");
+                  if(placement)
+                    $(placement).append(error);
+                  else
+                    error.insertAfter(error);
+                },
+                submitHandler:function(form)
+                {
+                  var user=$("#form #user").val();
+                  var password=$("#form #password").val();
 
-              $.post('../../app/controllers/usuarios_controller.php',{user:user,password:password,action:"sesion"},function(request){
-                $("#cont_request").html(request); 
-              });
-          });
+                  $.post('../../app/controllers/usuarios_controller.php',{user:user,password:password,action:"sesion"},function(request){
+                        $("#cont_request").html(request);
+                    });
+                }   
+            });
         });
     </script>    
 </head>
@@ -48,13 +72,15 @@
                    
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <input id="user" type="text" class="form-control" name="user" value="" placeholder="Usuario">                                        
+                        <input data-error=".erroruser" id="user" type="text" class="form-control" name="user" value="" placeholder="Usuario">                                     
                     </div>
+                    <div class="text-danger erroruser"></div>
 
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                        <input id="password" type="password" class="form-control" name="password" placeholder="Contraseña">
-                    </div>                                                                  
+                        <input data-error=".errorpass" id="password" type="password" class="form-control" name="password" placeholder="Contraseña">
+                    </div>                                       
+                    <div class="text-danger errorpass"></div>                          
 
                     <div class="form-group">
                         <!-- Button -->
