@@ -14,6 +14,9 @@ abstract protected function set();
 abstract protected function edit();
 abstract protected function delete();
 abstract protected function get_all();
+abstract protected function compara();
+abstract protected function compara1();
+abstract protected function compara2();
 
 	private function open_connection() {
 		$this->conn = new mysqli(self::$db_host, self::$db_user,

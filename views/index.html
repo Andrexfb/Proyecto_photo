@@ -102,6 +102,7 @@
 	            <tr class="center">
 	                <th data-field="nombre">No.</th>
 	                <th data-field="nombre">Nombre Album</th>
+	                <th data-field="price">Categoria</th>
 	                <th data-field="price">Foto</th>
 	                <th data-field="price">Eliminar</th>
 	                <th data-field="price">Modificar</th> 
@@ -113,6 +114,7 @@
 		</table>
 	</div>
 	<div class="modal fade" id="modalnueva">
+	<form id="modall">
 	  <div class="modal-dialog" role="document">
 	    <div class="modal-content">
 	      <div class="modal-header">
@@ -122,16 +124,17 @@
 	        </button>
 	      </div>
 	      <div class="modal-body">
-	        	<div class="form-group">	 
+	        	  <div class="form-group">	 
 				    <label for="mcategoria">Nombre Categoria</label>
-				    <input type="text" class="form-control validate" name="mcategoria"  placeholder="Nombre Categoria" required>
+				    <input type="text" class="form-control validate" name="mcategoria" id="mcategoria"  placeholder="Nombre Categoria"  data-error=".error_mcategoria">
 				  </div>
+				<div class=" error_mcategoria" style="color: red;"></div>
 	      </div>
 	      <div class="modal-footer">
 		      <div class="row col-md-offset-2">
 		      <center>			
 			     <div class="col-xs-12  col-md-5">
-			        <button type="button" class="btnn btn-warning" id="aceptar">Aceptar</button>
+			        <button type="button" class="btn btn-warning" id="aceptar">Aceptar</button>
 			      </div>
 		        <div class="col-xs-12 col-md-2">
 		        	<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
@@ -141,13 +144,12 @@
 	      </div>
 	    </div>
 	  </div>
+	  </form>
 	</div>
-
+	<div id="cont_request" style="display:none"></div>
 	<script type="text/javascript">
 	$(document).ready(function() 
-	{
-		// $('#myModal').modal();
-		
+	{	
 		combo();
 	     function combo()
 	     {
@@ -179,7 +181,7 @@
 
 
 
-               html+="<tr><td>"+(i+1)+"</td><td>"+item.nombre+"</td><td><img src='../"+item.foto+"' width='100' heigth='100'></td><td>"+btn_eliminar+"</td><td>"+btn_modificar+"</td></tr>";
+               html+="<tr><td>"+(i+1)+"</td><td>"+item.nombre+"</td><td>"+item.descripcion+"</td><td><img src='../"+item.foto+"' width='100' heigth='100'></td><td>"+btn_eliminar+"</td><td>"+btn_modificar+"</td></tr>";
                 //o puede ser numeros al azar y no el id (i+1) <td>"+item.descripcion"</td>
               });
               var f=new Date();
@@ -189,6 +191,42 @@
               $("#tab").DataTable();
             });
 	     }
+
+	     $("#aceptar").click(function(event){
+	     	$("#modall").submit();
+	     });
+
+	     $("#modall").validate({
+        ignore:[],
+        rules:{
+          mcategoria: "required"
+        },
+        messages:{
+          mcategoria:"Ingresa Categoria"
+          
+        },
+        errorElement:"div",
+        errorPlacement:function(error,element){
+          var placement=$(element).data("error");
+          if(placement)
+            $(placement).append(error);
+          else
+            error.insertAfter(error);
+        },
+        submitHandler:function(form)
+        {
+        	var mcategoria=$("#mcategoria").val();       
+              $.post('../app/controllers/combo_controller.php',{mcategoria:mcategoria,action:"insert2"},function(request){
+                $("#cont_request").html(request);
+              });
+
+ 		}
+
+      });
+
+
+
+	     
 	   
 
 

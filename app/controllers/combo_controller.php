@@ -18,6 +18,30 @@ if(isset($_POST["action"])||isset($_GET["action"]))
 				print_r($photo->get_all($val)); 
 			break;
 			
+			case 'insert2':
+				$mcategoria=$_POST["mcategoria"];
+				if(!$photo->delete($mcategoria)) 
+				{
+					
+					$photo->get($mcategoria);
+					?>
+					<script type="text/javascript">
+					var mcategoria=$("#mcategoria").val(''); 
+					toastr["success"]("Registro", "Listo");
+              		location.reload();
+					</script>
+					<?php
+				}
+				else
+				{
+					?>
+					<script type="text/javascript">
+					toastr["error"]("No Se Registro", "Error");
+					</script>
+					<?php
+				}
+				
+				break;
 
 			default:
 				echo "esto no esta bien";
