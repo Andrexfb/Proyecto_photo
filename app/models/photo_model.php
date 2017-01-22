@@ -21,6 +21,11 @@ class photo extends DBAbstractModel
             $this->query="select foto.*, categoria.descripcion from foto, categoria where foto.id_categoria=categoria.id_categoria";
         return $this->get_results_from_query(); 
         }
+        if ($val==3) 
+        {
+            $this->query="select c.descripcion,a.nombre,a.foto from categoria c,foto a where c.id_categoria=a.id_categoria group by c.descripcion";
+            return $this->get_results_from_query();
+        }
         
      }
         
