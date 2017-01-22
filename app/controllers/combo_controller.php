@@ -17,6 +17,11 @@ if(isset($_POST["action"])||isset($_GET["action"]))
 				$val=2;
 				print_r($photo->get_all($val)); 
 			break;
+			case 'categorias':
+				$photo=new photo();
+				$val=3;
+				print_r($photo->get_all($val));
+			break;
 			
 			case 'insert2':
 				$mcategoria=$_POST["mcategoria"];

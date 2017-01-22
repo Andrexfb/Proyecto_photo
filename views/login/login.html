@@ -20,15 +20,21 @@
                 var user=$("#form #user").val();
                 var password=$("#form #password").val();
 
-                if (user!='' && password!='') 
+                if (user!='') 
                 {
-                    $.post('../../app/controllers/usuarios_controller.php',{user:user,password:password,action:"sesion"},function(request){
+                    if (password!='') 
+                    {
+                        $.post('../../app/controllers/usuarios_controller.php',{user:user,password:password,action:"sesion"},function(request){
                         $("#cont_request").html(request);
                     });
+                    }
+                    else{
+                      toastr["error"]("Porvafor llena el campo de contraseña", "¡Error!");  
+                    } 
                 }
                 else
                 {
-                    toastr["error"]("Porvafor llena los campos", "¡Error!");
+                    toastr["error"]("Porvafor llena el campo de usuario", "¡Error!");
                 }
             });
         });
