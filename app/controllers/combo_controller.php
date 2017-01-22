@@ -20,7 +20,7 @@ if(isset($_POST["action"])||isset($_GET["action"]))
 			
 			case 'insert2':
 				$mcategoria=$_POST["mcategoria"];
-				if(!$photo->delete($mcategoria)) 
+				if(!$photo->compara($mcategoria)) 
 				{
 					
 					$photo->get($mcategoria);

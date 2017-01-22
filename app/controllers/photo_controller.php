@@ -5,13 +5,17 @@
 		
 				$nombre=$_POST["nombre"];
 				$categoria=$_REQUEST["categoria"];
-				mkdir("../../resources/fotos/".$categoria."/".$nombre."/", 0700, true);
+				$datos=($photo->compara1($categoria));
+				$datos=$datos[0];
+				$categor=$datos["descripcion"];
+				mkdir("../../resources/fotos/".$categor."/".$nombre."/", 0700, true);
 				$foto=$_FILES["foto"]["name"];
 				$ruta=$_FILES["foto"]["tmp_name"];
-				$destino="resources/fotos/".$categoria."/".$nombre."/".$foto;
-				copy($ruta,"../../".$destino);
+				$destino="resources/fotos/".$categor."/".$nombre."/".$foto;
+				copy($ruta,"../../".$destino);	
 				$new_avion_data= array(
 						'nombre'=>$nombre,
+						'categoria'=>$categoria,
 						'destino'=>$destino
 						);
 				$photo->set($new_avion_data);

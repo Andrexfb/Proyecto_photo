@@ -36,7 +36,7 @@ class photo extends DBAbstractModel
         foreach ($user_data as $campo=>$valor):
         $$campo = $valor;
         endforeach;
-        $this->query = "insert into foto (nombre,foto) values('".$nombre."','".$destino."')";
+        $this->query = "insert into foto (nombre,id_categoria,foto) values('".$nombre."','".$categoria."','".$destino."')";
         $this->execute_single_query();
     } 
     public function edit() 
@@ -54,9 +54,11 @@ class photo extends DBAbstractModel
             $this->get_results_from_query(); 
             return $this->rows;
     } 
-     public function compara1() 
+    public function compara1($categoria='') 
     {
-        
+         $this->query="SELECT * from categoria where id_categoria='".$categoria."'";
+            $this->get_results_from_query(); 
+            return $this->rows;
     } 
     public function compara2() 
     {

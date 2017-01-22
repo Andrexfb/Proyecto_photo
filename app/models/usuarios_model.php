@@ -25,12 +25,10 @@ require_once('conexion.php');
 
 	public function delete() {
 	}
-	public function compara($mcategoria='') 
+	public function compara() 
     {
        
-            $this->query="SELECT * from categoria where descripcion='".$mcategoria."'";
-            $this->get_results_from_query(); 
-            return $this->rows;
+          
     } 
      public function compara1() 
     {
