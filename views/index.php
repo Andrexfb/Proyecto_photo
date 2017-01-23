@@ -12,13 +12,12 @@
   {
     $id_usuario=$_SESSION["id_usuario"];
   } 
-  session_destroy();  
-?>		
+  ?>		
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Admon</title>
 	<link type="text/css" rel="stylesheet" href="../assets/css/buttons.dataTables.min.css">
     <link type="text/css" rel="stylesheet" href="../assets/css/jquery.dataTables.min.css"/>

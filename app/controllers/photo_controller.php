@@ -19,6 +19,6 @@
 						'destino'=>$destino
 						);
 				$photo->set($new_avion_data);
-				header("Location: ../../views/index.html");
+				header("Location: ../../views/index.php");
 	
 ?>
