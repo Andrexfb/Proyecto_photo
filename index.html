@@ -27,6 +27,7 @@
 <link rel="icon" href="images/favicon.png" type="image/x-icon">
 
 
+
 <link rel="stylesheet" href="assets/style.css">
 
 </head>
@@ -302,31 +303,33 @@
 </div>
 <!-- About Ends -->
 
-
-<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
+        
+<div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h3 class="modal-title" id="exampleModalLabel">Álbumes</h3>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="da1" name="da1"></h4>
       </div>
       <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label for="recipient-name" class="form-control-label">Recipient:</label>
-            <input type="text" class="form-control" id="recipient-name">
-          </div>
-          <div class="form-group">
-            <label for="message-text" class="form-control-label">Message:</label>
-            <textarea class="form-control" id="message-text"></textarea>
-          </div>
-        </form>
+      <div class="row">
+        <div class="card-group">
+          <div id="contenido_categoria"></div>
+        </div>
       </div>
-    </div>
-  </div>
-</div>
+      </div>
+      <div class="modal-body" style="border-top: solid 1px; color:#E0E0E0;">
+
+      <div class=" clearfix grid"> 
+          <div id="image_album"></div>   
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal" id="cerrar">Cerrar</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 
 
@@ -348,12 +351,18 @@
       }
       (document, 'script', 'facebook-jssdk'));</script>
       <!-- /////////////////////// -->
-      <div style="width: 100%; border-style: solid; border-color: white; border-width: .3px;">
-          <div style="width: 42%;   border-style: solid; border-color: white; border-width: .3px; margin-left: 29%; margin-right: 29%; align-content: center;">
-              <div class="fb-comments" data-href="https://www.facebook.com/chapsjesusgz" data-numposts="50" ></div>
-          </div>
-      </div>
-      
+     
+
+<div class="overlay spacer">
+<div class="container">
+<div class="row text-center  wowload fadeInDownBig">
+  <div class="col-sm-3 col-xs-3 col-md-3 col-lg-12">
+    <div class="fb-comments" data-href="https://www.facebook.com/chapsjesusgz" data-numposts="50" ></div>
+  </div>
+</div>
+</div>
+</div>
+
     <!-- //////////////////// -->
 
 
@@ -393,7 +402,6 @@ Copyright 2017 Arturo Irvin. Todos los Derechos Reservados.
 <!-- wow script -->
 <script src="assets/wow/wow.min.js"></script>
 
-
 <!-- boostrap -->
 <script src="assets/bootstrap/js/bootstrap.js" type="text/javascript" ></script>
 
@@ -408,6 +416,55 @@ Copyright 2017 Arturo Irvin. Todos los Derechos Reservados.
 <script src="assets/script.js"></script>
 
   <script type="text/javascript">
+  $(document).on("click", "#ver_album", function () {
+    var alb=$(this).data("nombre");
+
+    $.post("app/controllers/combo_controller.php",{alb:alb,action:"fotos"},function(res){
+      res = JSON.parse(res);
+      html="";
+      $.each(res, function(i, item)
+      { 
+        html+="<figure class='effect-oscar  wowload bounceIn'>";
+        html+="<img src='"+item.foto+"' alt='img02' />";
+        html+="<figcaption>";
+        html+="<p><a href='"+item.foto+"' title='Fotos' data-gallery='#blueimp-gallery' class=' btn btn-warning'>Ver Fotos</a></p>";
+        html+="</figcaption></figure>";
+    });
+
+    $("#image_album").html(html);
+    });
+
+  });
+  $(document).on("click", "#cerrar", function () {
+    html="";
+    $("#image_album").html(html);
+  });
+
+
+  $(document).on("click", "#btno", function () {
+    var dato=$(this).data("id");
+    var desc=$(this).data("album");
+
+    $("#da1").text(desc);
+
+    $.post("app/controllers/combo_controller.php",{dato:dato,action:"albumes"},function(res){
+      res = JSON.parse(res);
+      html="";
+      $.each(res, function(i, item)
+      {
+        html+='<div class="col-xs-6 col-sm-6 col-md-16 col-lg-6">';
+        html+='<div class="card" style="border:solid orange 2px;">';
+        html+='<img class="card-img-top img-responsive" src="'+item.foto+'" alt="Card image cap">';
+        html+='<div class="card-block">';
+        html+='<h4 class="card-title text-center" style="background-color:#000000; color:white;"> <strong>'+item.nombre+' </strong></h4>';
+        html+='<a href="#" class="btn btn-danger" id="ver_album" data-nombre="'+item.nombre+'">Ver fotos</a>';
+        html+='</div></div></div>';
+      });
+      $("#contenido_categoria").html(html);
+    });
+
+    $('#myModal').modal('show')
+  });
   $(document).ready(function() 
   {
 
@@ -421,8 +478,7 @@ Copyright 2017 Arturo Irvin. Todos los Derechos Reservados.
                 html+="<figcaption>";
                 html+="<h2>"+item.descripcion+"</h2>";
                 html+="<p>"+item.descripcion+"<br>";
-                html+="<a href='"+item.foto+"' title='Categorias' data-gallery>Ver más</a><br><a data-toggle='modal' data-target='.bd-example-modal-lg'>Álbumes</a></p>";
-                html+="";
+                html+="<a href='"+item.foto+"' title='Categorias' data-gallery>Ver más</a><br><a id='btno' data-album='"+item.descripcion+"' data-id='"+item.id_categoria+"'>Álbumes</a></p>";
                 html+="</figcaption></figure>";
               });
 

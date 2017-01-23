@@ -22,7 +22,19 @@ if(isset($_POST["action"])||isset($_GET["action"]))
 				$val=3;
 				print_r($photo->get_all($val));
 			break;
-			
+			case 'albumes':
+				$dato_album=$_POST["dato"];
+				$photo=new photo();
+				$val=4;
+				print_r($photo->get_all($val,$dato_album));
+			break;
+
+			case 'fotos':
+				$foto_album=$_POST["alb"];
+				$photo=new photo();
+				print_r($photo->edit($foto_album));
+			break;
+
 			case 'insert2':
 				$mcategoria=$_POST["mcategoria"];
 				if(!$photo->compara($mcategoria)) 

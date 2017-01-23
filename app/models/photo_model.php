@@ -9,7 +9,7 @@ class photo extends DBAbstractModel
     public $val;
 ################################# MÉTODOS ##################################
     # Traer datos de un usuario
-    public function get_all($val='',$mcategoria='')
+    public function get_all($val='',$dato_album='')
     {
         if($val==1)
         {
@@ -23,7 +23,12 @@ class photo extends DBAbstractModel
         }
         if ($val==3) 
         {
-            $this->query="select c.descripcion,a.nombre,a.foto from categoria c,foto a where c.id_categoria=a.id_categoria group by c.descripcion";
+            $this->query="select c.id_categoria,c.descripcion,a.nombre,a.foto from categoria c,foto a where c.id_categoria=a.id_categoria group by c.descripcion";
+            return $this->get_results_from_query();
+        }
+        if ($val==4) 
+        {
+            $this->query="select f.codigo,f.nombre,f.foto from foto f where id_categoria='".$dato_album."' group by f.nombre";
             return $this->get_results_from_query();
         }
         
@@ -44,8 +49,10 @@ class photo extends DBAbstractModel
         $this->query = "insert into foto (nombre,id_categoria,foto) values('".$nombre."','".$categoria."','".$destino."')";
         $this->execute_single_query();
     } 
-    public function edit() 
+    public function edit($foto_album='') 
     {
+        $this->query="select codigo,foto from foto where nombre='".$foto_album."'";
+        return $this->get_results_from_query();
         
     } 
      public function delete($id='') 
