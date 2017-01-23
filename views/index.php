@@ -11,7 +11,8 @@
   else
   {
     $id_usuario=$_SESSION["id_usuario"];
-  }   
+  } 
+  session_destroy();  
 ?>		
 
 <!DOCTYPE html>
