@@ -81,6 +81,7 @@
               <ul class="nav navbar-nav navbar-right scroll">
                  <li class="active"><a href="#Admon">Admon</a></li>
                  
+                 <li ><a href="#" id="carro">Carrusel</a></li>
                  <li ><a href="../" data-toggle="confirmation" data-placement="bottom" data-title="¿Pagina Principal?">Salir</a></li>
 
                  <li ><a href="login/" data-toggle="confirmation" data-placement="bottom" data-title="¿Regresar al login?">Regresar</a></li>
@@ -291,7 +292,62 @@
 	  
 	</div>
 	<div id="cont_request" style="display:none"></div>
+
+	<div class="modal fade" tabindex="-1" role="dialog" id="modal-carro">
+	  <div class="modal-dialog modal-lg" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title">Modificar Carrusel</h4>
+	      </div>
+	      <div class="modal-body">
+	        <div class="card-group">
+	        <div class="row">
+	          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+	          	 <div class="card">
+				    <img class="card-img-top img-responsive" src="../images/15ale.png" alt="Card image cap">
+				    <div class="card-block">
+				      <h4 class="card-title">Carrusel 1</h4>
+				      <a href="#" class="btn btn-danger" id="edita-carro">Editar</a>
+				    </div>
+				  </div>
+	          </div>
+	          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+	          	 <div class="card">
+				    <img class="card-img-top img-responsive" src="../images/15ale.png" alt="Card image cap">
+				    <div class="card-block">
+				      <h4 class="card-title">Carrusel 1</h4>
+				      <a href="#" class="btn btn-danger" id="edita-carro">Editar</a>
+				    </div>
+				  </div>
+	          </div>
+	          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+	          	 <div class="card">
+				    <img class="card-img-top img-responsive" src="../images/15ale.png" alt="Card image cap">
+				    <div class="card-block">
+				      <h4 class="card-title">Carrusel 1</h4>
+				      <a href="#" class="btn btn-danger" id="edita-carro">Editar</a>
+				    </div>
+				  </div>
+	          </div>
+	        </div>
+	      </div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-danger" data-dismiss="modal" id="cerrar">Cerrar</button>
+	      </div>
+	    </div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+
+
+
 	<script type="text/javascript">
+	$(document).on("click", "#carro", function () {
+		$('#modal-carro').modal('show')
+  	});
+
 	$(document).ready(function() 
 	{	
 		$('[data-toggle=confirmation]').confirmation({
