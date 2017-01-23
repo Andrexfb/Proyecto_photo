@@ -392,7 +392,7 @@ photoartvin@gmail.com
 <!-- Footer Starts -->
 <div class="footer text-center spacer">
 <img src="images/logo3.png" alt="logo">
-<p class="wowload flipInX"><a href="https://www.facebook.com/arturoirvin.mejiadominguez"><i class="fa fa-facebook fa-2x"></i></a> <a href="https://www.instagram.com/photoartvin/"><i class="fa fa-instagram fa-2x"></i></a> <a href="https://twitter.com/photoartvin"><i class="fa fa-twitter fa-2x"></i></a> <a href="#"><i class="fa fa-flickr fa-2x"></i></a> </p>
+<p class="wowload flipInX"><a href="https://www.facebook.com/arturoirvin.mejiadominguez" target="_blank"><i class="fa fa-facebook fa-2x"></i></a> <a href="https://www.instagram.com/photoartvin/" target="_blank"><i class="fa fa-instagram fa-2x"></i></a> <a href="https://twitter.com/photoartvin" target="_blank"><i class="fa fa-twitter fa-2x"></i></a> </p>
 Copyright 2017 Arturo Irvin. Todos los Derechos Reservados.
 </div>
 <!-- # Footer Ends -->
@@ -469,12 +469,12 @@ Copyright 2017 Arturo Irvin. Todos los Derechos Reservados.
       html="";
       $.each(res, function(i, item)
       {
-        html+='<div class="col-xs-6 col-sm-6 col-md-16 col-lg-6">';
-        html+='<div class="card" style="border:solid orange 2px;">';
+        html+='<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">';
+        html+='<div class="card" style="border: solid 1px; color:#E0E0E0;">';
         html+='<img class="card-img-top img-responsive" src="'+item.foto+'" alt="Card image cap">';
         html+='<div class="card-block">';
         html+='<h4 class="card-title text-center" style="background-color:#000000; color:white;"> <strong>'+item.nombre+' </strong></h4>';
-        html+='<a href="#" class="btn btn-danger" id="ver_album" data-nombre="'+item.nombre+'">Ver fotos</a>';
+        html+='<a href="#" class="btn btn-danger" id="ver_album" data-nombre="'+item.nombre+'">Abrir</a>';
         html+='</div></div></div>';
       });
       $("#contenido_categoria").html(html);
