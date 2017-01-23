@@ -41,12 +41,30 @@ if(isset($_POST["action"])||isset($_GET["action"]))
 				{
 					?>
 					<script type="text/javascript">
-					toastr["error"]("No Se Registro", "Error");
+					toastr["error"]("La Categoria Ya existe", "Error");
 					</script>
 					<?php
 				}
 				
 				break;
+				case 'delete':
+					$id=$_POST["id"];
+					$photo=new photo();
+					$dat=($photo->compara2($id));
+					$dat=$dat[0];
+					$ruta=$dat["foto"];
+					unlink("../../".$ruta);
+
+					?>
+					<script type="text/javascript">
+					toastr["success"]("Foto eliminada", "Listo");
+					$("#modaleliminar").modal('hide');
+					
+					location.reload();
+					</script>
+					<?php
+					$photo->delete($id);
+					break;
 
 			default:
 				echo "esto no esta bien";

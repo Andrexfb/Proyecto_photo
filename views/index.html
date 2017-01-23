@@ -84,8 +84,8 @@
 		<form action="../app/controllers/photo_controller.php" method="POST" enctype="multipart/form-data">
 				<h3><b><i>Agregar Fotografias</i></b></h3>
 				<div class="form-group">	 
-				    <label for="nombre">Nombre Album</label>
-				    <input type="text" class="form-control validate" name="nombre"  placeholder="Nombre Album" required>
+				    <label for="nombre">Nombre Álbum</label>
+				    <input type="text" class="form-control validate" name="nombre"  placeholder="Nombre Álbum" required>
 				  </div>
 			 	 <label for="categoria">Categoria</label>
 				  	<div class="row">
@@ -113,11 +113,12 @@
 			<thead>
 	            <tr class="center">
 	                <th data-field="nombre">No.</th>
-	                <th data-field="nombre">Nombre Album</th>
+	                <th data-field="nombre">Nombre Álbum</th>
 	                <th data-field="price">Categoria</th>
 	                <th data-field="price">Foto</th>
 	                <th data-field="price">Eliminar</th>
-	                <th data-field="price">Modificar</th> 
+	                <th data-field="price">Modificar</th>
+	                <th data-field="price">Agregar</th>  
 	            </tr>
 	        </thead>
 	        <tbody>
@@ -131,9 +132,7 @@
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <h4 class="modal-title"><b><i>Agregar Categoria</i></b></h4>
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-	          <span aria-hidden="true">&times;</span>
-	        </button>
+	        
 	      </div>
 	      <div class="modal-body">
 	        	  <div class="form-group">	 
@@ -149,7 +148,7 @@
 			        <button type="button" class="btn btn-warning" id="aceptar">Aceptar</button>
 			      </div>
 		        <div class="col-xs-12 col-md-2">
-		        	<button type="button" class="btnn btn-danger" data-dismiss="modal">Cancelar</button>
+		        	<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
 		        </div>
 		        </center>
 	       	 </div>
@@ -157,6 +156,123 @@
 	    </div>
 	  </div>
 	  </form>
+	</div>
+
+	<div class="modal fade" id="modaleliminar">
+	<form class="center">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h2 class="modal-title"><b><i>¿Seguro que desea eliminar?</i></b></h2>
+	        
+	      </div>
+
+	      <div class="modal-footer">
+		      <div class="row col-md-offset-2">
+		      <center>			
+			     <div class="col-xs-12  col-md-5">
+			        <button type="button" class="btn btn-warning" id="aceptare">Aceptar</button>
+			      </div>
+		        <div class="col-xs-12 col-md-2">
+		        	<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+		        </div>
+		        </center>
+	       	 </div>
+	      </div>
+	    </div>
+	  </div>
+	  </form>
+	</div>
+
+	<div class="modal fade" id="modalagregar">
+	 <form action="../app/controllers/photo_controller.php" method="POST" enctype="multipart/form-data">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h4 class="modal-title"><b><i>Agregar Otra Foto</i></b></h4>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	     
+	      <div class="conteiner col-xs-12 col-md-8 col-md-offset-2" id="agreg">
+				<div class="form-group">	 
+				    <label for="nombre">Nombre Álbum</label>
+				   
+				    <input type="text" class="form-control  nombre" name="nombre"  placeholder="Nombre Álbum">
+				  </div>
+			 	
+				  	<div class="form-group">
+					  <input type="text" style="display:none;"  class="form-control  categoria" name="categoria"  placeholder="categoria">
+					</div>
+				  <div class="form-group">
+				    <label >Archivo</label>
+				    <input type="file" name="foto" required>
+				    
+				  </div>
+			</div>
+		</form>
+	      <div class="modal-footer">
+		      <div class="row col-md-offset-2">
+		      		
+			     <div class="col-xs-12  col-md-5">
+				    <input type="submit" class="btn btn-warning" name="enviar" value="Aceptar">
+			      </div>
+		        <div class="col-xs-12 col-md-2">
+		        	<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+		        </div>
+		      
+	       	 </div>
+	      </div>
+	    </div>
+	  </div>
+	  
+	</div>
+
+	<div class="modal fade" id="modalmodificar">
+	 <form action="../app/controllers/photo_controller.php" method="POST" enctype="multipart/form-data">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h4 class="modal-title"><b><i>Modificar Foto</i></b></h4>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	     
+	      <div class="conteiner col-xs-12 col-md-8 col-md-offset-2" id="modificar">
+				<div class="form-group">	
+				<input type="text"  class="form-control  cat"  placeholder="categoria"> 
+				    <label for="nombre">Nombre Álbum</label>
+				   	
+				    <input type="text" class="form-control  nombre" name="nombre"  placeholder="Nombre Álbum">
+				  </div>
+			 	
+				  	<div class="form-group">
+					  <input type="text" style="display:none;"  class="form-control  categoria" name="categoria"  placeholder="categoria">
+					</div>
+				  <div class="form-group">
+				    <label >Archivo</label>
+				    <input type="file" name="foto" required>
+				    
+				  </div>
+			</div>
+		</form>
+	      <div class="modal-footer">
+		      <div class="row col-md-offset-2">
+		      		
+			     <div class="col-xs-12  col-md-5">
+				    <input type="submit" class="btn btn-warning modifica" name="enviar" value="Aceptar">
+			      </div>
+		        <div class="col-xs-12 col-md-2">
+		        	<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+		        </div>
+		      
+	       	 </div>
+	      </div>
+	    </div>
+	  </div>
+	  
 	</div>
 	<div id="cont_request" style="display:none"></div>
 	<script type="text/javascript">
@@ -194,11 +310,12 @@
                 
                 var btn_eliminar='<button class="btn_eliminar  btn btn-danger" data-position="left" data-delay="50" data-tooltip="Eliminar" data-id="'+item.codigo+'">Eliminar</button>';
 
-                  var btn_modificar='<button class="btn_modificar btn btn-success" data-position="left" data-delay="50" data-tooltip="Modificar" data-id="'+item.codigo+'">Modificar</button>';
+                 var btn_modificar='<button class="btn_modificar btn btn-success" data-position="left" data-delay="50" data-tooltip="Modificar" data-nombre="'+item.nombre+'" data-id_categoria="'+item.id_categoria+'" data-id="'+item.codigo+'">Modificar</button>';
+                 var btn_agregar='<button class="btn_agregar btn btn-warning" data-position="left" data-delay="50" data-tooltip="Agregar" data-nombre="'+item.nombre+'" data-id_categoria="'+item.id_categoria+'" data-id="'+item.codigo+'">Agregar</button>';
 
 
 
-               html+="<tr><td>"+(i+1)+"</td><td>"+item.nombre+"</td><td>"+item.descripcion+"</td><td><img src='../"+item.foto+"' width='100' heigth='100'></td><td>"+btn_eliminar+"</td><td>"+btn_modificar+"</td></tr>";
+               html+="<tr><td>"+(i+1)+"</td><td>"+item.nombre+"</td><td>"+item.descripcion+"</td><td><img src='../"+item.foto+"' width='100' heigth='100'></td><td>"+btn_eliminar+"</td><td>"+btn_modificar+"</td><td>"+btn_agregar+"</td></tr>";
                 //o puede ser numeros al azar y no el id (i+1) <td>"+item.descripcion"</td>
               });
               var f=new Date();
@@ -208,6 +325,49 @@
               $("#tab").DataTable();
             });
 	     }
+		    $("#tab").on("click","button.btn_eliminar",function()
+	        {
+	          var id=$(this).data("id");
+	           $("#modaleliminar").modal('show');
+	           $("#aceptare").click(function(event)
+	           {
+	            $.post("../app/controllers/combo_controller.php",{id:id,action:"delete"},function(request){
+	            	$("#cont_request").html(request);
+	            	
+	            });
+	             
+	            
+	          });
+	         });
+	       
+	        $(".modifica").click(function(event)
+	        {
+	          	id=$("#modificar .cat").val();
+	            $.post("../app/controllers/combo_controller.php",{id:id,action:"delete"});
+				toastr["success"]("Foto Modificada", "Listo");
+
+	        });
+	      
+
+	        $("#tab").on("click","button.btn_agregar",function()
+	        {
+	          var id=$(this).data("id");
+	          var nombre=$(this).data("nombre");
+	          var categoria=$(this).data("id_categoria");
+	           $("#modalagregar").modal('show');
+	          	$("#agreg .nombre").val(nombre);
+	          	$("#agreg .categoria").val(categoria);
+	        });
+	        $("#tab").on("click","button.btn_modificar",function()
+	        {
+	          var id=$(this).data("id");
+	          var nombre=$(this).data("nombre");
+	          var categoria=$(this).data("id_categoria");
+	           $("#modalmodificar").modal('show');
+	           $("#modificar .cat").val(id);
+	          	$("#modificar .nombre").val(nombre);
+	          	$("#modificar .categoria").val(categoria);
+	        });
 
 	     $("#aceptar").click(function(event){
 	     	$("#modall").submit();

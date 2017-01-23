@@ -48,9 +48,10 @@ class photo extends DBAbstractModel
     {
         
     } 
-     public function delete() 
+     public function delete($id='') 
     {
-        
+        $this->query="delete from foto where codigo='".$id."'";
+        return $this->get_results_from_query();
     } 
     public function compara($mcategoria='') 
     {
@@ -65,9 +66,11 @@ class photo extends DBAbstractModel
             $this->get_results_from_query(); 
             return $this->rows;
     } 
-    public function compara2() 
+    public function compara2($id='') 
     {
-        
+        $this->query="SELECT * from foto where codigo='".$id."'";
+        $this->get_results_from_query(); 
+        return $this->rows;
     } 
     
 
