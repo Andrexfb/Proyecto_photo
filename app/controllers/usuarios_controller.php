@@ -13,10 +13,13 @@
 
 				if ($usua->get_all($user,$password))
 				{
+					$_SESSION["sesion_ok"]=true;
+					$_SESSION["id_usuario"]=$datos_usuario["id_usuario"];
+					
 					?>
 						<script type="text/javascript">
 							toastr["success"]("Bienvenido", "¡Ok!");
-							window.location.assign("../../")
+							window.location.assign("../")
 						</script>
 					<?php
 				} 
