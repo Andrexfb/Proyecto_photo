@@ -37,6 +37,7 @@ if(isset($_POST["action"])||isset($_GET["action"]))
 
 			case 'insert2':
 				$mcategoria=$_POST["mcategoria"];
+				//$mcategoria=utf8_decode($mcategoria);
 				if(!$photo->compara($mcategoria)) 
 				{
 					
@@ -65,6 +66,7 @@ if(isset($_POST["action"])||isset($_GET["action"]))
 					$dat=($photo->compara2($id));
 					$dat=$dat[0];
 					$ruta=$dat["foto"];
+					$ruta=utf8_decode($ruta);
 					unlink("../../".$ruta);
 
 					?>

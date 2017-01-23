@@ -10,6 +10,7 @@
 				$datos=($photo->compara1($categoria));
 				$datos=$datos[0];
 				$categor=$datos["descripcion"];
+				$categor=utf8_decode($categor);
 				mkdir("../../resources/fotos/".$categor."/".$nombre."/", 0700, true);
 				$foto=$_FILES["foto"]["name"];
 				$ruta=$_FILES["foto"]["tmp_name"];
