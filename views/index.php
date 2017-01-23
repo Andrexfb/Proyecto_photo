@@ -81,7 +81,6 @@
               <ul class="nav navbar-nav navbar-right scroll">
                  <li class="active"><a href="#Admon">Admon</a></li>
                  
-                 <li ><a href="#" id="carro">Carrusel</a></li>
                  <li ><a href="../" data-toggle="confirmation" data-placement="bottom" data-title="¿Pagina Principal?">Salir</a></li>
 
                  <li ><a href="login/" data-toggle="confirmation" data-placement="bottom" data-title="¿Regresar al login?">Regresar</a></li>
@@ -344,9 +343,6 @@
 
 
 	<script type="text/javascript">
-	$(document).on("click", "#carro", function () {
-		$('#modal-carro').modal('show')
-  	});
 
 	$(document).ready(function() 
 	{	
