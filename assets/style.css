@@ -73,7 +73,7 @@ p{font-size:1em;line-height: 1.7em; margin-bottom: 1.7em;}
 .team a i.fa:hover{color: #E89F10;}
 
 
-.highlight-info{ background:url(../images/lab.jpg) center fixed; background-size: cover; color:#fff;}
+.highlight-info{ background:url(../images/cors.jpg) center fixed; background-size: cover; color:#fff;}
 .highlight-info .overlay{background: rgba(232,159,16,0.7);}
 .highlight-info h4{color: #fff;margin:0.5em 0 0 0;}
 /*about us*/
@@ -250,7 +250,7 @@ p{font-size:1em;line-height: 1.7em; margin-bottom: 1.7em;}
 .img-hover img:hover {
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-    -webkit-transform:translateZ(0) scale(30); /* Safari and Chrome */
+    -webkit-transform:translateZ(0) scale(10); /* Safari and Chrome */
     -moz-transform:scale(2); /* Firefox */
     -ms-transform:scale(2); /* IE 9 */
     -o-transform:translatZ(0) scale(1.20); /* Opera */
