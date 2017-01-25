@@ -253,7 +253,7 @@ p{font-size:1em;line-height: 1.7em; margin-bottom: 1.7em;}
     -webkit-transform:translateZ(0) scale(10); /* Safari and Chrome */
     -moz-transform:scale(2); /* Firefox */
     -ms-transform:scale(2); /* IE 9 */
-    -o-transform:translatZ(0) scale(1.20); /* Opera */
+    -o-transform:translatZ(0) scale(1); /* Opera */
     transform:translatZ(0) scale(1.20);
 }
   

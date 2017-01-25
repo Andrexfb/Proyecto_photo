@@ -62,11 +62,12 @@
               <ul class="nav navbar-nav navbar-right scroll">
                  <li class="active"><a href="#home">Inicio</a></li>
                  <li ><a href="#about">Servicios</a></li>
-                 <li ><a href="#works">Portafolio</a></li>
-                 <li ><a href="#partners">Sobre Mi</a></li>
-                 <li ><a href="#referencia">Descripcion</a></li>
-
-                 <li ><a href="#fb-root">Contacto</a></li>
+                 <li ><a href="#works">Portafólio</a></li>
+                 <li ><a href="#partners">Sobre Mí</a></li>
+                 <li ><a href="#referencia">Descripción</a></li>
+                 <li ><a href="#contacto">Contacto</a></li>
+                  
+                 <li ><a href="#fb-root">Comentarios</a></li>
               </ul>
             </div>
             <!-- #Nav Ends -->
@@ -192,7 +193,7 @@
       <div class="animated slideInLeft col-xs-2"><img alt="portfolio" src="images/logo3.png" width="100" class="img-circle img-responsive"></div>
       <div  class="col-xs-10">
 
-      <p class="text-justify"> Tengo aproximadamente 15 años dedicándome a la fotografía y al vídeo, trabajando en diversos eventos sociales. Soy una persona seria y responsable, me gusta que el cliente quede satisfecho, cómodo y agradecido con el trabajo que desempeño como fotógrafo y camarografo. </p>      
+      <p class="text-justify" style="margin-right: 30px; "> Tengo aproximadamente 15 años dedicándome a la fotografía y al vídeo, trabajando en diversos eventos sociales. Soy una persona seria y responsable, me gusta que el cliente quede satisfecho, cómodo y agradecido con el trabajo que desempeño como fotógrafo y camarografo. </p>      
       <span>Arturo Irvin Photography-video<b></b></span>
       </div>
       </div>
@@ -299,7 +300,7 @@
 <br>
 
 <!-- About Starts -->
-<div class="highlight-info ">
+<div class="highlight-info " id="contacto">
 <div class="overlay spacer">
 <div class="container">
 <div class="row text-center  wowload fadeInDownBig">
@@ -363,6 +364,7 @@ photoartvin@gmail.com
               <div class="">
                   
                     <div class="fb-comments" data-href="https://www.facebook.com/AmauryD28/about" data-numposts="50" ></div>
+                    
                   
                 </div>
               </div>
@@ -376,7 +378,14 @@ photoartvin@gmail.com
 </div>
 
 
-
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 
 
 
@@ -402,6 +411,8 @@ photoartvin@gmail.com
 <div class="row text-center  wowload fadeInDownBig">
   <div class="col-sm-3 col-xs-3 col-md-3 col-lg-12">
     <div class="fb-comments" data-href="https://www.facebook.com/AmauryD28" data-numposts="50" ></div>
+    <div class="fb-share-button" data-href="https://www.facebook.com/arturoirvin.mejiadominguez?fref=ts" data-layout="button_count" data-size="small" data-mobile-iframe="false"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.facebook.com%2Farturoirvin.mejiadominguez%3Ffref%3Dts&amp;src=sdkpreparse">Share</a></div>
+
   </div>
 </div>
 </div>
@@ -518,7 +529,7 @@ Copyright 2017 Arturo Irvin. Todos los Derechos Reservados.
               $.each(res, function(i, item)
               { 
                 html+="<figure class='effect-oscar  wowload fadeInUp'>";
-                html+="<img src='"+item.foto+"' alt='img01' />";
+                html+="<img src='"+item.foto+"' alt='img01' 'width='50' heigth='50' ' />";
                 html+="<figcaption>";
                 html+="<h2>"+item.descripcion+"</h2>";
                 html+="<p>"+item.descripcion+"<br>";
